@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace IrcDotNet.Samples.Common
+namespace IrcDotRT.Samples.Common
 {
     // Provides core functionality for an IRC bot that operates via multiple clients.
     public abstract class IrcBot : IDisposable
@@ -262,21 +262,17 @@ namespace IrcDotNet.Samples.Common
 
         #region IRC Client Event Handlers
 
-        private void IrcClient_Connected(object sender, EventArgs e)
+        private void IrcClient_Connected(object sender, IrcClient client)
         {
-            var client = (IrcClient)sender;
-
             OnClientConnect(client);
         }
 
-        private void IrcClient_Disconnected(object sender, EventArgs e)
+        private void IrcClient_Disconnected(object sender, IrcClient client)
         {
-            var client = (IrcClient)sender;
-
             OnClientDisconnect(client);
         }
 
-        private void IrcClient_Registered(object sender, EventArgs e)
+        private void IrcClient_Registered(object sender, IrcUser user)
         {
             var client = (IrcClient)sender;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IrcDotNet.Samples.Common
+namespace IrcDotRT.Samples.Common
 {
     // Provides access to basic commands for controlling an IRC bot.
     public abstract class BasicIrcBot : IrcBot

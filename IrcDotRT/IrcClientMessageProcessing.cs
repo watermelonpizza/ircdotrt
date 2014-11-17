@@ -299,7 +299,7 @@ namespace IrcDotRT
             localUser.HostName = nickNameIdMatch.Groups["host"].GetValue() ?? localUser.HostName;
 
             isRegistered = true;
-            OnRegistered(new EventArgs());
+            OnRegistered(localUser);
         }
 
         /// <summary>
@@ -1115,7 +1115,7 @@ namespace IrcDotRT
             Debug.Assert(message.Parameters[1] != null);
             motdBuilder.AppendLine(message.Parameters[1]);
 
-            OnMotdReceived(new EventArgs());
+            OnMotdReceived(motdBuilder.ToString());
         }
 
         /// <summary>
@@ -1131,7 +1131,7 @@ namespace IrcDotRT
             localUser.NickName = message.Parameters[1].Split(' ')[3];
 
             isRegistered = true;
-            OnRegistered(new EventArgs());
+            OnRegistered(localUser);
         }
 
         /// <summary>

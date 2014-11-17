@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IrcDotNet.Tests
+namespace IrcDotRT.Tests
 {
     using Common.Collections;
     using Ctcp;

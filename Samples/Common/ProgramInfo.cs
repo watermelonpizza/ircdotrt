@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace IrcDotNet.Samples.Common
+namespace IrcDotRT.Samples.Common
 {
     public static class ProgramInfo
     {

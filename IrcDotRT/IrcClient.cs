@@ -418,7 +418,7 @@ namespace IrcDotRT
         /// Note that the <see cref="LocalUser"/> object is not yet set when this event occurs, but is only accessible
         /// when the <see cref="Registered"/> event is raised.
         /// </remarks>
-        public event EventHandler<EventArgs> Connected;
+        public event EventHandler<IrcClient> Connected;
 
         /// <summary>
         /// Occurs when the client has failed to connect to the server.
@@ -428,7 +428,7 @@ namespace IrcDotRT
         /// <summary>
         /// Occurs when the client has disconnected from the server.
         /// </summary>
-        public event EventHandler<EventArgs> Disconnected;
+        public event EventHandler<IrcClient> Disconnected;
 
         /// <summary>
         /// Occurs when the client encounters an error during execution, while connected.
@@ -461,7 +461,7 @@ namespace IrcDotRT
         /// <remarks>
         /// The <see cref="LocalUser"/> object is set when this event occurs.
         /// </remarks>
-        public event EventHandler<EventArgs> Registered;
+        public event EventHandler<IrcUser> Registered;
 
         /// <summary>
         /// Occurs when the client information has been received from the server, following registration.
@@ -498,7 +498,7 @@ namespace IrcDotRT
         /// <summary>
         /// Occurs when the Message of the Day (MOTD) has been received from the server.
         /// </summary>
-        public event EventHandler<EventArgs> MotdReceived;
+        public event EventHandler<string> MotdReceived;
 
         /// <summary>
         /// Occurs when information about the IRC network has been received from the server.
@@ -1973,7 +1973,7 @@ namespace IrcDotRT
             lock (((ICollection)usersReadOnly).SyncRoot)
                 users.Add(localUser);
 
-            OnConnected(new EventArgs());
+            OnConnected(this);
         }
 
         private void HandleClientDisconnected()
@@ -1990,101 +1990,101 @@ namespace IrcDotRT
             // Set that client has disconnected.
             disconnectedEvent.Set();
             
-            OnDisconnected(new EventArgs());
+            OnDisconnected(this);
         }
 
         private void HandleSocketError(Exception e)
         {
-                    HandleClientDisconnected();
-                    OnError(new IrcErrorEventArgs(e));
+            HandleClientDisconnected();
+            OnError(new IrcErrorEventArgs(e));
         }
 
         /// <summary>
         /// Raises the <see cref="Connected"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnConnected(EventArgs e)
+        /// <param name="client">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected virtual void OnConnected(IrcClient client)
         {
             var handler = Connected;
             if (handler != null)
-                handler(this, e);
+                handler(this, client);
         }
 
         /// <summary>
         /// Raises the <see cref="ConnectFailed"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcErrorEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnConnectFailed(IrcErrorEventArgs e)
+        /// <param name="error">The <see cref="IrcErrorEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnConnectFailed(IrcErrorEventArgs error)
         {
             var handler = ConnectFailed;
             if (handler != null)
-                handler(this, e);
+                handler(this, error);
         }
 
         /// <summary>
         /// Raises the <see cref="Disconnected"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnDisconnected(EventArgs e)
+        /// <param name="client">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected virtual void OnDisconnected(IrcClient client)
         {
             var handler = Disconnected;
             if (handler != null)
-                handler(this, e);
+                handler(this, client);
         }
 
         /// <summary>
         /// Raises the <see cref="Error"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcErrorEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnError(IrcErrorEventArgs e)
+        /// <param name="error">The <see cref="IrcErrorEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnError(IrcErrorEventArgs error)
         {
             var handler = Error;
             if (handler != null)
-                handler(this, e);
+                handler(this, error);
         }
 
         /// <summary>
         /// Raises the <see cref="RawMessageSent"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcRawMessageEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnRawMessageSent(IrcRawMessageEventArgs e)
+        /// <param name="rawMessage">The <see cref="IrcRawMessageEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnRawMessageSent(IrcRawMessageEventArgs rawMessage)
         {
             var handler = RawMessageSent;
             if (handler != null)
-                handler(this, e);
+                handler(this, rawMessage);
         }
 
         /// <summary>
         /// Raises the <see cref="RawMessageReceived"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcRawMessageEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnRawMessageReceived(IrcRawMessageEventArgs e)
+        /// <param name="rawMessage">The <see cref="IrcRawMessageEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnRawMessageReceived(IrcRawMessageEventArgs rawMessage)
         {
             var handler = RawMessageReceived;
             if (handler != null)
-                handler(this, e);
+                handler(this, rawMessage);
         }
 
         /// <summary>
         /// Raises the <see cref="ProtocolError"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcProtocolErrorEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnProtocolError(IrcProtocolErrorEventArgs e)
+        /// <param name="protocolError">The <see cref="IrcProtocolErrorEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnProtocolError(IrcProtocolErrorEventArgs protocolError)
         {
             var handler = ProtocolError;
             if (handler != null)
-                handler(this, e);
+                handler(this, protocolError);
         }
 
         /// <summary>
         /// Raises the <see cref="ErrorMessageReceived"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="IrcErrorMessageEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnErrorMessageReceived(IrcErrorMessageEventArgs e)
+        /// <param name="errorMessage">The <see cref="IrcErrorMessageEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnErrorMessageReceived(IrcErrorMessageEventArgs errorMessage)
         {
             var handler = ErrorMessageReceived;
             if (handler != null)
-                handler(this, e);
+                handler(this, errorMessage);
         }
 
         /// <summary>
@@ -2101,12 +2101,12 @@ namespace IrcDotRT
         /// <summary>
         /// Raises the <see cref="Registered"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnRegistered(EventArgs e)
+        /// <param name="user">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected virtual void OnRegistered(IrcUser user)
         {
             var handler = Registered;
             if (handler != null)
-                handler(this, e);
+                handler(this, user);
         }
 
         /// <summary>
@@ -2156,12 +2156,12 @@ namespace IrcDotRT
         /// <summary>
         /// Raises the <see cref="MotdReceived"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnMotdReceived(EventArgs e)
+        /// <param name="motd">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected virtual void OnMotdReceived(string motd)
         {
             var handler = MotdReceived;
             if (handler != null)
-                handler(this, e);
+                handler(this, motd);
         }
 
         /// <summary>

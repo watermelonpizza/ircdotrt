@@ -23,7 +23,7 @@ namespace IrcDotRT.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +37,7 @@ namespace IrcDotRT.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IrcDotRT.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
@@ -52,7 +52,7 @@ namespace IrcDotRT.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot set user mode for &apos;{0}&apos;..
         /// </summary>
-        public static string MessageCannotSetUserMode {
+        internal static string MessageCannotSetUserMode {
             get {
                 return ResourceManager.GetString("MessageCannotSetUserMode", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The channel type &apos;{0}&apos; sent by the server is invalid..
         /// </summary>
-        public static string MessageInvalidChannelType {
+        internal static string MessageInvalidChannelType {
             get {
                 return ResourceManager.GetString("MessageInvalidChannelType", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The message command &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidCommand {
+        internal static string MessageInvalidCommand {
             get {
                 return ResourceManager.GetString("MessageInvalidCommand", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The command definition &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidCommandDefinition {
+        internal static string MessageInvalidCommandDefinition {
             get {
                 return ResourceManager.GetString("MessageInvalidCommandDefinition", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The command &apos;{0}&apos; was not recognised..
         /// </summary>
-        public static string MessageInvalidMessageCommand {
+        internal static string MessageInvalidMessageCommand {
             get {
                 return ResourceManager.GetString("MessageInvalidMessageCommand", resourceCulture);
             }
@@ -109,7 +109,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The non-trailing parameter &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidMiddleParameter {
+        internal static string MessageInvalidMiddleParameter {
             get {
                 return ResourceManager.GetString("MessageInvalidMiddleParameter", resourceCulture);
             }
@@ -118,7 +118,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The specified nick name is invalid..
         /// </summary>
-        public static string MessageInvalidNickName {
+        internal static string MessageInvalidNickName {
             get {
                 return ResourceManager.GetString("MessageInvalidNickName", resourceCulture);
             }
@@ -127,7 +127,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The specified password is invalid..
         /// </summary>
-        public static string MessageInvalidPassword {
+        internal static string MessageInvalidPassword {
             get {
                 return ResourceManager.GetString("MessageInvalidPassword", resourceCulture);
             }
@@ -136,7 +136,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The message prefix &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidPrefix {
+        internal static string MessageInvalidPrefix {
             get {
                 return ResourceManager.GetString("MessageInvalidPrefix", resourceCulture);
             }
@@ -145,7 +145,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The quoted character &apos;{0}&apos; was not recognised..
         /// </summary>
-        public static string MessageInvalidQuotedChar {
+        internal static string MessageInvalidQuotedChar {
             get {
                 return ResourceManager.GetString("MessageInvalidQuotedChar", resourceCulture);
             }
@@ -154,7 +154,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The specified real name is invalid..
         /// </summary>
-        public static string MessageInvalidRealName {
+        internal static string MessageInvalidRealName {
             get {
                 return ResourceManager.GetString("MessageInvalidRealName", resourceCulture);
             }
@@ -163,7 +163,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The object provided for registration info is of an unknown type..
         /// </summary>
-        public static string MessageInvalidRegistrationInfoObject {
+        internal static string MessageInvalidRegistrationInfoObject {
             get {
                 return ResourceManager.GetString("MessageInvalidRegistrationInfoObject", resourceCulture);
             }
@@ -172,7 +172,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The registration info for a service must have a valid nick name and description..
         /// </summary>
-        public static string MessageInvalidServiceRegistrationInfo {
+        internal static string MessageInvalidServiceRegistrationInfo {
             get {
                 return ResourceManager.GetString("MessageInvalidServiceRegistrationInfo", resourceCulture);
             }
@@ -181,7 +181,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The source &apos;{0}&apos; of the message was not recognised as either a server or user..
         /// </summary>
-        public static string MessageInvalidSource {
+        internal static string MessageInvalidSource {
             get {
                 return ResourceManager.GetString("MessageInvalidSource", resourceCulture);
             }
@@ -190,7 +190,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The message tag &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidTag {
+        internal static string MessageInvalidTag {
             get {
                 return ResourceManager.GetString("MessageInvalidTag", resourceCulture);
             }
@@ -199,7 +199,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A target name may not contain any &apos;,&apos; character..
         /// </summary>
-        public static string MessageInvalidTargetName {
+        internal static string MessageInvalidTargetName {
             get {
                 return ResourceManager.GetString("MessageInvalidTargetName", resourceCulture);
             }
@@ -208,7 +208,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The trailing parameter &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageInvalidTrailingParameter {
+        internal static string MessageInvalidTrailingParameter {
             get {
                 return ResourceManager.GetString("MessageInvalidTrailingParameter", resourceCulture);
             }
@@ -217,7 +217,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The URL scheme &apos;{0}&apos; is not valid..
         /// </summary>
-        public static string MessageInvalidUrlScheme {
+        internal static string MessageInvalidUrlScheme {
             get {
                 return ResourceManager.GetString("MessageInvalidUrlScheme", resourceCulture);
             }
@@ -226,7 +226,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The specified user mode is invalid..
         /// </summary>
-        public static string MessageInvalidUserMode {
+        internal static string MessageInvalidUserMode {
             get {
                 return ResourceManager.GetString("MessageInvalidUserMode", resourceCulture);
             }
@@ -235,7 +235,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The specified user name is invalid..
         /// </summary>
-        public static string MessageInvalidUserName {
+        internal static string MessageInvalidUserName {
             get {
                 return ResourceManager.GetString("MessageInvalidUserName", resourceCulture);
             }
@@ -244,7 +244,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The registration info for a user must have a valid nick name and user name..
         /// </summary>
-        public static string MessageInvalidUserRegistrationInfo {
+        internal static string MessageInvalidUserRegistrationInfo {
             get {
                 return ResourceManager.GetString("MessageInvalidUserRegistrationInfo", resourceCulture);
             }
@@ -253,7 +253,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The ISUPPORT message sent by the server contains an invalid PREFIX parameter..
         /// </summary>
-        public static string MessageISupportPrefixInvalid {
+        internal static string MessageISupportPrefixInvalid {
             get {
                 return ResourceManager.GetString("MessageISupportPrefixInvalid", resourceCulture);
             }
@@ -262,7 +262,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Not enough mode parameters were specified for the given modes..
         /// </summary>
-        public static string MessageNotEnoughModeParameters {
+        internal static string MessageNotEnoughModeParameters {
             get {
                 return ResourceManager.GetString("MessageNotEnoughModeParameters", resourceCulture);
             }
@@ -271,7 +271,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The host name &apos;{0}&apos; does not resolve to a valid IP address..
         /// </summary>
-        public static string MessageNoValidAddress {
+        internal static string MessageNoValidAddress {
             get {
                 return ResourceManager.GetString("MessageNoValidAddress", resourceCulture);
             }
@@ -280,7 +280,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The length of a raw message must not exceed {0} characters..
         /// </summary>
-        public static string MessageRawMessageTooLong {
+        internal static string MessageRawMessageTooLong {
             get {
                 return ResourceManager.GetString("MessageRawMessageTooLong", resourceCulture);
             }
@@ -289,7 +289,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The message source &apos;{0}&apos; is not a user..
         /// </summary>
-        public static string MessageSourceNotUser {
+        internal static string MessageSourceNotUser {
             get {
                 return ResourceManager.GetString("MessageSourceNotUser", resourceCulture);
             }
@@ -298,7 +298,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The type of the given target mask &apos;{0}&apos; is invalid..
         /// </summary>
-        public static string MessageTargetMaskInvalidType {
+        internal static string MessageTargetMaskInvalidType {
             get {
                 return ResourceManager.GetString("MessageTargetMaskInvalidType", resourceCulture);
             }
@@ -307,7 +307,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The target mask must be contain at least two characters..
         /// </summary>
-        public static string MessageTargetMaskTooShort {
+        internal static string MessageTargetMaskTooShort {
             get {
                 return ResourceManager.GetString("MessageTargetMaskTooShort", resourceCulture);
             }
@@ -316,7 +316,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No more than 3 mode parameters may be sent per message..
         /// </summary>
-        public static string MessageTooManyModeParameters {
+        internal static string MessageTooManyModeParameters {
             get {
                 return ResourceManager.GetString("MessageTooManyModeParameters", resourceCulture);
             }
@@ -325,7 +325,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No more than 15 command parameters may be specified..
         /// </summary>
-        public static string MessageTooManyParams {
+        internal static string MessageTooManyParams {
             get {
                 return ResourceManager.GetString("MessageTooManyParams", resourceCulture);
             }
@@ -334,7 +334,7 @@ namespace IrcDotRT.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The value cannot be an empty string.
         /// </summary>
-        public static string MessageValueCannotBeEmptyString {
+        internal static string MessageValueCannotBeEmptyString {
             get {
                 return ResourceManager.GetString("MessageValueCannotBeEmptyString", resourceCulture);
             }

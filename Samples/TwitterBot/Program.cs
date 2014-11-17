@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using IrcDotNet.Samples.Common;
+using IrcDotRT.Samples.Common;
 
 namespace TwitterBot
 {

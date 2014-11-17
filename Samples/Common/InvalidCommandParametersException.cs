@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace IrcDotNet.Samples.Common
+namespace IrcDotRT.Samples.Common
 {
     public class InvalidCommandParametersException : Exception
     {

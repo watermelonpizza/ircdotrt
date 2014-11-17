@@ -237,7 +237,7 @@ namespace IrcDotRT.Ctcp
             SendMessagePing(users, DateTime.Now.Ticks.ToString(), false);
         }
 
-        private void ircClient_Connected(object sender, EventArgs e)
+        private void ircClient_Connected(object sender, IrcClient client)
         {
             if (ircClient.LocalUser != null)
             {
@@ -246,7 +246,7 @@ namespace IrcDotRT.Ctcp
             }
         }
 
-        private void ircClient_Disconnected(object sender, EventArgs e)
+        private void ircClient_Disconnected(object sender, IrcClient client)
         {
             if (ircClient.LocalUser != null)
             {
