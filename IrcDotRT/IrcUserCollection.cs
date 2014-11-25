@@ -25,6 +25,16 @@ namespace IrcDotRT
         }
 
         /// <summary>
+        /// Gets the IrcUser associated with the specified nickname.
+        /// </summary>
+        /// <param name="nickName">The nickname of the user to return</param>
+        /// <returns>The user with the specified nickname</returns>
+        public IrcUser this[string nickName]
+        {
+            get { return this.Where(c => c.NickName == nickName).First(); }
+        }
+
+        /// <summary>
         /// Gets the client to which the collection of users belongs.
         /// </summary>
         /// <value>The client to which the collection of users belongs.</value>

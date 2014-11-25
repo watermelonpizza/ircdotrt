@@ -32,6 +32,16 @@ namespace IrcDotRT
             get { return client; }
         }
 
+        /// <summary>
+        /// Gets the IrcChannel associated with the specified name.
+        /// </summary>
+        /// <param name="channelName">The name of the channel to return</param>
+        /// <returns>The channel with the specified name</returns>
+        public IrcChannel this[string channelName]
+        {
+            get { return this.Where(c => c.Name == channelName).First(); }
+        }
+
         /// <inheritdoc cref="Join(IEnumerable{string})"/>
         public void Join(params string[] channels)
         {

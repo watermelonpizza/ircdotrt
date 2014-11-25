@@ -17,10 +17,10 @@ using Windows.Storage.Streams;
 using Windows.Networking;
 using System.Threading.Tasks;
 using IrcDotRT.Properties;
+using System.ComponentModel;
 
 namespace IrcDotRT
 {
-
     /// <summary>
     /// Represents a client that communicates with a server using the IRC (Internet Relay Chat) protocol.
     /// 
@@ -32,7 +32,7 @@ namespace IrcDotRT
     /// </remarks>
     /// <threadsafety static="true" instance="true"/>
     [DebuggerDisplay("{ToString(), nq}")]
-    public partial class IrcClient : IDisposable
+    public partial class IrcClient : INotifyPropertyChanged, IDisposable
     {
         // Maximum number of parameters that can be sent in single raw message.        
         private const int maxParamsCount = 15;
@@ -148,6 +148,16 @@ namespace IrcDotRT
         // Non-zero if object has been disposed or is currently being disposed.
         private int disposedFlag = 0;
 
+        private string welcomeMessage = String.Empty;
+        private string serverName = String.Empty;
+        private string serverCreatedMessage = String.Empty;
+        private string serverVersion = String.Empty;
+        private string yourHostMessage = String.Empty;
+        IEnumerable<char> serverAvailableUserModes = null;
+        IEnumerable<char> serverAvailableChannelModes = null;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="IrcClient"/> class.
         /// </summary>
@@ -210,8 +220,12 @@ namespace IrcDotRT
         /// <value>The 'Welcome' message received from the server..</value>
         public string WelcomeMessage
         {
-            get;
-            private set;
+            get { return welcomeMessage; }
+            private set
+            {
+                welcomeMessage = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WelcomeMessage"));
+            }
         }
 
         /// <summary>
@@ -221,8 +235,12 @@ namespace IrcDotRT
         /// <value>The 'Your Host' message received from the server.</value>
         public string YourHostMessage
         {
-            get;
-            private set;
+            get { return yourHostMessage; }
+            private set
+            {
+                yourHostMessage = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("YourHostMessage"));
+            }
         }
 
         /// <summary>
@@ -232,8 +250,12 @@ namespace IrcDotRT
         /// <value>The 'Created' message received from the server.</value>
         public string ServerCreatedMessage
         {
-            get;
-            private set;
+            get { return serverCreatedMessage; }
+            private set
+            {
+                serverCreatedMessage = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ServerCreatedMessage"));
+            }
         }
 
         /// <summary>
@@ -243,8 +265,12 @@ namespace IrcDotRT
         /// <value>The host name given received from the server.</value>
         public string ServerName
         {
-            get;
-            private set;
+            get { return serverName; }
+            private set
+            {
+                serverName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ServerName"));
+            }
         }
 
         /// <summary>
@@ -254,8 +280,12 @@ namespace IrcDotRT
         /// <value>The version given received from the server.</value>
         public string ServerVersion
         {
-            get;
-            private set;
+            get { return serverVersion; }
+            private set
+            {
+                serverVersion = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ServerVersion"));
+            }
         }
 
         /// <summary>
@@ -265,8 +295,12 @@ namespace IrcDotRT
         /// <value>A list of user modes available on the server.</value>
         public IEnumerable<char> ServerAvailableUserModes
         {
-            get;
-            private set;
+            get { return serverAvailableUserModes; }
+            private set
+            {
+                serverAvailableUserModes = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ServerAvailableUserModes"));
+            }
         }
 
         /// <summary>
@@ -276,8 +310,12 @@ namespace IrcDotRT
         /// <value>A list of channel modes available on the server.</value>
         public IEnumerable<char> ServerAvailableChannelModes
         {
-            get;
-            private set;
+            get { return serverAvailableChannelModes; }
+            private set
+            {
+                serverAvailableChannelModes = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ServerAvailableChannelModes"));
+            }
         }
 
         /// <summary>
@@ -895,10 +933,10 @@ namespace IrcDotRT
         {
             // Add statistical entry to temporary list.
             listedStatsEntries.Add(new IrcServerStatisticalEntry()
-                {
-                    Type = type,
-                    Parameters = message.Parameters.Skip(1).ToArray(),
-                });
+            {
+                Type = type,
+                Parameters = message.Parameters.Skip(1).ToArray(),
+            });
         }
 
         /// <summary>
@@ -1679,7 +1717,7 @@ namespace IrcDotRT
 
             if (registrationInfo == null)
                 throw new ArgumentNullException("registrationInfo");
-            
+
             Connect(new EndpointPair(null, string.Empty, new HostName(hostName), port.ToString()), useSsl, registrationInfo);
         }
 
@@ -1899,11 +1937,11 @@ namespace IrcDotRT
         {
             try
             {
-                Tuple<bool, string, IrcRegistrationInfo> obj = (Tuple<bool,string,IrcRegistrationInfo>)token;
+                Tuple<bool, string, IrcRegistrationInfo> obj = (Tuple<bool, string, IrcRegistrationInfo>)token;
 
                 if (obj.Item1)
                     await socket.UpgradeToSslAsync(SocketProtectionLevel.Tls12, new HostName(remoteEndPoint.RemoteHostName.DisplayName));
-                
+
                 await socket.ConnectAsync(remoteEndPoint);
 
                 // Start sending and receiving data to/from server.
@@ -1989,7 +2027,7 @@ namespace IrcDotRT
 
             // Set that client has disconnected.
             disconnectedEvent.Set();
-            
+
             OnDisconnected(this);
         }
 
@@ -2262,6 +2300,17 @@ namespace IrcDotRT
         protected virtual void OnChannelListReceived(IrcChannelListReceivedEventArgs e)
         {
             var handler = ChannelListReceived;
+            if (handler != null)
+                handler(this, e);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="PropertyChangedEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            var handler = PropertyChanged;
             if (handler != null)
                 handler(this, e);
         }

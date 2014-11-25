@@ -119,7 +119,7 @@ namespace IrcDotRT
         /// Occurs when the list of users in the channel has been received.
         /// The list of users is sent initially upon joining the channel, or on the request of the client.
         /// </summary>
-        public event EventHandler<EventArgs> UsersListReceived;
+        public event EventHandler<IrcChannelUserCollection> UsersListReceived;
 
         /// <summary>
         /// Occurs when any of the modes of the channel have changed.
@@ -334,7 +334,7 @@ namespace IrcDotRT
 
         internal void HandleUsersListReceived()
         {
-            OnUsersListReceived(new EventArgs());
+            OnUsersListReceived(Users);
         }
 
         internal void HandleModesChanged(string newModes, IEnumerable<string> newModeParameters)
@@ -424,8 +424,8 @@ namespace IrcDotRT
         /// <summary>
         /// Raises the <see cref="UsersListReceived"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnUsersListReceived(EventArgs e)
+        /// <param name="e">The users that have been recieved</param>
+        protected virtual void OnUsersListReceived(IrcChannelUserCollection e)
         {
             var handler = UsersListReceived;
             if (handler != null)
