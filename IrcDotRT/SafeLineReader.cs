@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +12,8 @@ namespace IrcDotRT
         // Current incomplete line;
         private string currentLine;
 
+        private List<byte> bytesList = new List<byte>();
+
         private bool endOfLine = false;
 
         private char PreviousCharacter()
@@ -19,10 +21,13 @@ namespace IrcDotRT
             return currentLine[currentLine.Length - 1];
         }
 
-        public bool Add(char character)
+        public bool Add(byte b)
         {
+            char character = (char)b;
             if (character == '\n' && PreviousCharacter() == '\r')
                 endOfLine = true;
+
+            bytesList.Add(b);
 
             currentLine += character;
 
@@ -31,10 +36,13 @@ namespace IrcDotRT
 
         public string FlushLine()
         {
+            var buffer = bytesList.ToArray();
+            currentLine = System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             string tempLine = currentLine.Substring(0, currentLine.Length - 2);
 
             currentLine = String.Empty;
             endOfLine = false;
+            bytesList.Clear();
 
             return tempLine;
         }
