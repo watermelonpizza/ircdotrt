@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -1843,11 +1843,11 @@ namespace IrcDotRT
                     while (reader.UnconsumedBufferLength > 0)
                     {
                         bool breakLoop = false;
-                        char readChar;
+                        byte readChar;
                         do
                         {
                             if (reader.UnconsumedBufferLength > 0)
-                                readChar = (char)reader.ReadByte();
+                                readChar = reader.ReadByte();
                             else
                             {
                                 breakLoop = true;
